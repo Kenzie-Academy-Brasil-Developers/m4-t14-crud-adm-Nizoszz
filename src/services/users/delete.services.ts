@@ -9,7 +9,7 @@ const del = async (userId: number): Promise<void> => {
     SET
         "active" = false
     WHERE
-        id = (%L)
+        id = (%L);
   `;
 
   const queryDesactiveFormat: string = format(queryDesactiveTemplate, [userId]);

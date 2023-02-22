@@ -23,5 +23,5 @@ export {
   iUserWithoutPassword,
   iAllUsers,
   iUserWithoutPasswordResult,
-  iUserUpdate
+  iUserUpdate,
 };

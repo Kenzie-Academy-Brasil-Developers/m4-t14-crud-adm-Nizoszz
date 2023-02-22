@@ -12,7 +12,7 @@ const create = async (data: iLoginRequest): Promise<string> => {
         FROM
             users
         WHERE
-            email = (%L)
+            email = (%L);
     `;
 
   const queryUserFormat = format(queryUserTemplate, [data.email]);
