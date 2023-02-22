@@ -5,6 +5,7 @@ import {
   userDeleteService,
   usersReadService,
   userUpdateService,
+  userPutService,
 } from "../services/users";
 import { iUserRequest, iUserUpdate } from "../interfaces/users.interfaces";
 
@@ -36,10 +37,19 @@ const update = async (req: Request, resp: Response): Promise<Response> => {
   return resp.status(200).json(update);
 };
 
+const put = async (req: Request, resp: Response): Promise<Response> => {
+  const id: number = Number(req.params.id);
+  const data: iUserRequest = req.body;
+
+  const update = await userPutService.put(data, id);
+
+  return resp.status(200).json(update);
+};
+
 const del = async (req: Request, res: Response): Promise<Response> => {
   const userId: number = Number(req.params.id);
   const userDelete = await userDeleteService.del(userId);
   return res.status(204).send();
 };
 
-export default { create, read, readProfile, update, del };
+export default { create, read, readProfile, update, put, del };

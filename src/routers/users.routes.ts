@@ -7,7 +7,11 @@ import {
   ensureAdminIsValid,
   validatePermission,
 } from "../middlewares";
-import { createUserSchema, updateSchema } from "../schemas/users.schemas";
+import {
+  createUserSchema,
+  returnUserSchema,
+  updateSchema,
+} from "../schemas/users.schemas";
 
 const userRoutes: Router = Router();
 
@@ -42,8 +46,8 @@ userRoutes.put(
   ensureTokenIsValid.verify,
   ensureExistUser.verify,
   ensureAdminIsValid.verify,
-  validateBody.verify(updateSchema)
-  // usersControllers.put
+  validateBody.verify(createUserSchema),
+  usersControllers.put
 );
 userRoutes.delete(
   "/:id",
