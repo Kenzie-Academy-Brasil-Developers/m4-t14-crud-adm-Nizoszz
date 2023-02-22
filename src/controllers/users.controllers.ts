@@ -27,10 +27,7 @@ const readProfile = async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).json(user);
 };
 
-export const update = async (
-  req: Request,
-  resp: Response
-): Promise<Response> => {
+const update = async (req: Request, resp: Response): Promise<Response> => {
   const id: number = Number(req.params.id);
   const data: iUserUpdate = req.body;
 
