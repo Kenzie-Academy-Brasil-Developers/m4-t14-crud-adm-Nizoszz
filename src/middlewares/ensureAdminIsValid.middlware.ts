@@ -6,9 +6,9 @@ const verify = async (
   resp: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const autentication = req.user.admin;
+  const authentication = req.user.admin;
 
-  if (autentication === false) {
+  if (authentication === false) {
     throw new AppError("Insufficient Permission", 403);
   }
 

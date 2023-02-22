@@ -1,4 +1,4 @@
-import { QueryConfig } from "pg";
+import { QueryConfig, QueryResult } from "pg";
 import format from "pg-format";
 import {
   iUserUpdate,
@@ -11,13 +11,8 @@ import { returnUserSchemaWithoutPassword } from "../../schemas/users.schemas";
 
 export const update = async (
   payload: iUserUpdate,
-  userId: number,
-  admin: boolean
+  userId: number
 ): Promise<iUserWithoutPassword> => {
-  if (admin === false) {
-    throw new AppError("Insufficient Permission", 403);
-  }
-
   const tbCol: string[] = Object.keys(payload);
   const tbValue: (string | undefined)[] = Object.values(payload);
   const queryTemplate: string = `
@@ -35,6 +30,7 @@ export const update = async (
     text: queryTemplate,
     values: [userId],
   };
+  console.log(queryConfig);
 
   const queryResult: iUserResult = await client.query(queryConfig);
 

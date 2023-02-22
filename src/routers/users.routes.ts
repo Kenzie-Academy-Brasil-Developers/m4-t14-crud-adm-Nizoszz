@@ -5,6 +5,7 @@ import {
   validateBody,
   ensureTokenIsValid,
   ensureAdminIsValid,
+  validatePermission,
 } from "../middlewares";
 import { createUserSchema, updateSchema } from "../schemas/users.schemas";
 
@@ -32,13 +33,23 @@ userRoutes.patch(
   "/:id",
   ensureTokenIsValid.verify,
   ensureExistUser.verify,
+  validatePermission.verify,
   validateBody.verify(updateSchema),
   usersControllers.update
+);
+userRoutes.put(
+  "/:id/recover",
+  ensureTokenIsValid.verify,
+  ensureExistUser.verify,
+  ensureAdminIsValid.verify,
+  validateBody.verify(updateSchema)
+  // usersControllers.put
 );
 userRoutes.delete(
   "/:id",
   ensureTokenIsValid.verify,
   ensureExistUser.verify,
+  validatePermission.verify,
   usersControllers.del
 );
 

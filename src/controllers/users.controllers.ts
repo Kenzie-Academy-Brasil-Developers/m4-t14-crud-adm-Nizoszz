@@ -33,7 +33,7 @@ export const update = async (
 ): Promise<Response> => {
   const id: number = Number(req.params.id);
 
-  const update = await userUpdateService.update(req.body, id, req.user.admin);
+  const update = await userUpdateService.update(req.body, id);
 
   return resp.status(200).json(update);
 };
