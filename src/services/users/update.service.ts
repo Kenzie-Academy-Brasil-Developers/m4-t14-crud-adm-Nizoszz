@@ -8,7 +8,7 @@ import {
 import { client } from "../../database";
 import { returnUserSchemaWithoutPassword } from "../../schemas/users.schemas";
 
-export const update = async (
+const update = async (
   payload: iUserUpdate,
   userId: number
 ): Promise<iUserWithoutPassword> => {

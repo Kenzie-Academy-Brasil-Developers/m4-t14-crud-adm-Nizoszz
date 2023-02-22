@@ -7,7 +7,7 @@ const del = async (userId: number): Promise<void> => {
     UPDATE
         users
     SET
-        "active" = false
+        active = false
     WHERE
         id = (%L);
   `;
