@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS "users"(
+    "id" SERIAL PRIMARY KEY NOT NULL,
+    "name" VARCHAR(20) NOT NULL,
+    "email"VARCHAR(100) UNIQUE NOT NULL,
+    "password" VARCHAR(120) NOT NULL,
+    "admin" BOOLEAN NOT NULL DEFAULT false,
+    "active" BOOLEAN NOT NULL DEFAULT TRUE
+);
+
+SELECT 
+    *
+FROM 
+    users;
+
+DROP TABLE users;
