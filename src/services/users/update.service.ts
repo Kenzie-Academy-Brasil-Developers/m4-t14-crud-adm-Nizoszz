@@ -6,7 +6,6 @@ import {
   iUserResult,
 } from "../../interfaces/users.interfaces";
 import { client } from "../../database";
-import { AppError } from "../../errors";
 import { returnUserSchemaWithoutPassword } from "../../schemas/users.schemas";
 
 export const update = async (
@@ -27,10 +26,9 @@ export const update = async (
   const queryFomart = format(queryTemplate, tbCol, tbValue);
 
   const queryConfig: QueryConfig = {
-    text: queryTemplate,
+    text: queryFomart,
     values: [userId],
   };
-  console.log(queryConfig);
 
   const queryResult: iUserResult = await client.query(queryConfig);
 

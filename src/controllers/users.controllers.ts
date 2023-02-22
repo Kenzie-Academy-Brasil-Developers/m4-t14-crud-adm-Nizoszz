@@ -6,7 +6,7 @@ import {
   usersReadService,
   userUpdateService,
 } from "../services/users";
-import { iUserRequest } from "../interfaces/users.interfaces";
+import { iUserRequest, iUserUpdate } from "../interfaces/users.interfaces";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
   const data: iUserRequest = req.body;
@@ -32,9 +32,10 @@ export const update = async (
   resp: Response
 ): Promise<Response> => {
   const id: number = Number(req.params.id);
+  const data: iUserUpdate = req.body;
 
-  const update = await userUpdateService.update(req.body, id);
-
+  const update = await userUpdateService.update(data, id);
+  console.log(update);
   return resp.status(200).json(update);
 };
 

@@ -13,8 +13,7 @@ const readProfile = async (userId: number): Promise<iUserWithoutPassword> => {
         FROM
             users
         WHERE
-            id = $1  
-        ;
+            id = $1;
     `;
 
   const queryConfig: QueryConfig = {
