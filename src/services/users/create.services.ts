@@ -6,7 +6,7 @@ import { client } from "../../database";
 import format from "pg-format";
 import { QueryResult } from "pg";
 import { AppError } from "../../errors";
-import { returnUserSchemaWithoutPassword } from "../../schemas/users.schemas";
+import { returnUserSchema } from "../../schemas/users.schemas";
 
 const create = async (data: iUserRequest): Promise<iUserWithoutPassword> => {
   const queryUserTemplate: string = `
@@ -37,7 +37,7 @@ const create = async (data: iUserRequest): Promise<iUserWithoutPassword> => {
   const queryFormat: string = format(queryTemplate, tbCol, tbValues);
   const queryResult: QueryResult = await client.query(queryFormat);
 
-  const user = returnUserSchemaWithoutPassword.parse(queryResult.rows[0]);
+  const user = returnUserSchema.parse(queryResult.rows[0]);
 
   return user;
 };

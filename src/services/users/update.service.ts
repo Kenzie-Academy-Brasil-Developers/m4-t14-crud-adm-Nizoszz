@@ -6,7 +6,7 @@ import {
   iUserResult,
 } from "../../interfaces/users.interfaces";
 import { client } from "../../database";
-import { returnUserSchemaWithoutPassword } from "../../schemas/users.schemas";
+import { returnUserSchema } from "../../schemas/users.schemas";
 
 const update = async (
   payload: iUserUpdate,
@@ -32,7 +32,7 @@ const update = async (
 
   const queryResult: iUserResult = await client.query(queryConfig);
 
-  return returnUserSchemaWithoutPassword.parse(queryResult.rows[0]);
+  return returnUserSchema.parse(queryResult.rows[0]);
 };
 
 export default { update };

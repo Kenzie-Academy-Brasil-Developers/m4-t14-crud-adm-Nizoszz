@@ -10,7 +10,7 @@ const verify = async (
   res: Response,
   next: NextFunction
 ): Promise<Response | void> => {
-  const userId: number = Number(req.user.id);
+  const userId: number = Number(req.params.id);
 
   const queryUserTemplate: string = `
     SELECT

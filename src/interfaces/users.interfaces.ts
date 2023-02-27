@@ -5,6 +5,7 @@ import {
   returnUserSchema,
   allUsersSchema,
   updateSchema,
+  putSchema,
 } from "../schemas/users.schemas";
 
 type iUserRequest = z.infer<typeof createUserSchema>;
@@ -15,6 +16,7 @@ type iUserWithoutPasswordResult = QueryResult<iUser>;
 type iUserResult = QueryResult<iUserWithoutPassword>;
 type iAllUsers = z.infer<typeof allUsersSchema>;
 type iUserUpdate = z.infer<typeof updateSchema>;
+type iUserPut = z.infer<typeof putSchema>;
 
 export {
   iUser,
@@ -24,4 +26,5 @@ export {
   iAllUsers,
   iUserWithoutPasswordResult,
   iUserUpdate,
+  iUserPut,
 };

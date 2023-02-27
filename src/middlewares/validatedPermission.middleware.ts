@@ -12,7 +12,6 @@ const verify = async (
   const userId: number = Number(req.params.id);
   const admin: boolean = req.user.admin;
   const { id } = req.user;
-  console.log(admin, userId);
 
   if (admin === false) {
     const queryUserTemplate: string = `
