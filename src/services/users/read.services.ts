@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { QueryResult } from "pg";
 import { iAllUsers } from "../../interfaces/users.interfaces";
 import client from "../../database/connection";
+import { allUsersSchema } from "../../schemas/users.schemas";
 
 const read = async (): Promise<iAllUsers> => {
   const queryTemplate = `
@@ -14,7 +15,7 @@ const read = async (): Promise<iAllUsers> => {
   const queryResult: QueryResult = await client.query(queryTemplate);
   const users = queryResult.rows;
 
-  return users;
+  return allUsersSchema.parse(users);
 };
 
 export default { read };

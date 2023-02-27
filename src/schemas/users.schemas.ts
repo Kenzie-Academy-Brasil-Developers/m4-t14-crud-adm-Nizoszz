@@ -13,16 +13,18 @@ const createUserSchema = z.object({
   admin: z.boolean().optional().default(false),
 });
 
-const returnUserSchema = createUserSchema.extend({
-  id: z.number(),
-  active: z.boolean(),
+const returnUserSchema = createUserSchema
+  .extend({
+    id: z.number(),
+    active: z.boolean(),
+  })
+  .omit({ password: true });
+
+const putSchema = returnUserSchema.pick({
+  active: true,
 });
 
-const returnUserSchemaWithoutPassword = returnUserSchema.omit({
-  password: true,
-});
-
-const allUsersSchema = z.array(returnUserSchemaWithoutPassword);
+const allUsersSchema = returnUserSchema.array();
 
 const updateSchema = z.object({
   name: z.string().min(3).max(20).optional(),
@@ -32,7 +34,7 @@ const updateSchema = z.object({
 export {
   createUserSchema,
   returnUserSchema,
-  returnUserSchemaWithoutPassword,
   allUsersSchema,
   updateSchema,
+  putSchema,
 };

@@ -7,7 +7,11 @@ import {
   userUpdateService,
   userPutService,
 } from "../services/users";
-import { iUserRequest, iUserUpdate } from "../interfaces/users.interfaces";
+import {
+  iUserPut,
+  iUserRequest,
+  iUserUpdate,
+} from "../interfaces/users.interfaces";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
   const data: iUserRequest = req.body;
@@ -33,13 +37,13 @@ const update = async (req: Request, resp: Response): Promise<Response> => {
   const data: iUserUpdate = req.body;
 
   const update = await userUpdateService.update(data, id);
-  console.log(update);
+
   return resp.status(200).json(update);
 };
 
 const put = async (req: Request, resp: Response): Promise<Response> => {
   const id: number = Number(req.params.id);
-  const data: iUserRequest = req.body;
+  const data: iUserPut = req.body;
 
   const update = await userPutService.put(data, id);
 

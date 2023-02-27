@@ -1,21 +1,17 @@
 import { QueryConfig, QueryResult } from "pg";
 import format from "pg-format";
 import {
-  iUserResult,
-  iUserRequest,
   iUser,
+  iUserPut,
+  iUserWithoutPasswordResult,
 } from "../../interfaces/users.interfaces";
 import { client } from "../../database";
 import { returnUserSchema } from "../../schemas/users.schemas";
 
-const put = async (payload: iUserRequest, userId: number): Promise<iUser> => {
-  const newPayload: iUser = {
-    id: userId,
-    active: true,
-    ...payload,
-  };
-  const tbCol: string[] = Object.keys(newPayload);
-  const tbValue: (string | number | boolean)[] = Object.values(newPayload);
+const put = async (payload: iUserPut, userId: number): Promise<iUser> => {
+  const tbCol: string[] = Object.keys(payload);
+  const tbValue: (string | number | boolean | boolean)[] =
+    Object.values(payload);
   const queryTemplate: string = `
         UPDATE
             users
@@ -26,7 +22,6 @@ const put = async (payload: iUserRequest, userId: number): Promise<iUser> => {
         RETURNING   *;
     `;
 
-  console.log(newPayload);
   const queryFomart = format(queryTemplate, tbCol, tbValue);
 
   const queryConfig: QueryConfig = {

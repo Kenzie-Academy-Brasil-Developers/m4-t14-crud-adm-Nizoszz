@@ -9,7 +9,7 @@ import {
 } from "../middlewares";
 import {
   createUserSchema,
-  returnUserSchema,
+  putSchema,
   updateSchema,
 } from "../schemas/users.schemas";
 
@@ -46,7 +46,7 @@ userRoutes.put(
   ensureTokenIsValid.verify,
   ensureExistUser.verify,
   ensureAdminIsValid.verify,
-  validateBody.verify(createUserSchema),
+  validateBody.verify(putSchema),
   usersControllers.put
 );
 userRoutes.delete(
